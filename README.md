@@ -9,6 +9,11 @@
   * Thymeleaf
   * MySQL(Ver5.7)
 
+## *Comment*
+
+  * 2016/07/22
+     * テクノロジー追記
+
 CIDashboard
 
 河野くん：　好きにしていいよ！！
