@@ -21,7 +21,7 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
       	  selectOptions: []
         }},
         {name: 'Apply Charge', field: 'appChargeUserNm', width: 200},
-        {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
+        {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
       ],
       data: []
@@ -45,7 +45,31 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
       	  selectOptions: []
         }},
         {name: 'Apply Charge', field: 'appChargeUserNm', width: 200},
-        {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
+        {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
+        {name: 'Update Date', field: 'updTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
+      ],
+      data: []
+  	};
+		// CI用対応済一覧
+  	$scope.gridApplyDoneOpt = {
+  		id: 'appliedDoneGrid',
+  		enableFiltering: true,
+  	  columnDefs: [
+        {name: 'ID', field: 'appId', width: 100,
+        	cellTemplate: '<div><a href="/apply/{{COL_FIELD}}">{{COL_FIELD}}</a></div>'
+        },
+        {name: 'Title', field: 'appTitle', width: 300},
+        {name: 'Type', field: 'appTypeCode', width: 120, filter: {
+      	  type: uiGridConstants.filter.SELECT,
+      	  selectOptions: []
+        }},
+        {name: 'Applier', field: 'appUserNm', width: 200},
+        {name: 'Status', field: 'appStsName', width: 120, filter: {
+      	  type: uiGridConstants.filter.SELECT,
+      	  selectOptions: []
+        }},
+        {name: 'Apply Charge', field: 'appChargeUserNm', width: 200},
+        {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'updTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
       ],
       data: []
@@ -138,10 +162,20 @@ ykzCtrl.controller('CiCtrl', ['$scope', '$controller', 'YkzApi', 'uiGridConstant
 				function(errMsg) {}
 			);
 		};
+		
+		$scope.getAppDoneData = function() {
+			YkzApi.doGet('/appfindata', {}, true, false).then(
+				function(result) {
+					$scope.gridApplyDoneOpt.data = result;
+				},
+				function(errMsg) {}
+			);
+		};
 
 	  $scope.init = function() {
 	  	$scope.getMstData();
 	  	$scope.getAppData();
+	  	$scope.getAppDoneData();
 	  };
 	  $scope.init();
 	}
