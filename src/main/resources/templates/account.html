@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <title th:text="${@environment.getProperty('spring.application.name')}">title</title>
+		<link rel="stylesheet" href="/apps/css/bootstrap.css" th:href="@{/apps/css/bootstrap.css}"/>
+		<link rel="stylesheet" href="/apps/css/bootstrap-theme.css" th:href="@{/apps/css/bootstrap-theme.css}"/>
+		<link rel="stylesheet" href="/apps/css/style.css" th:href="@{/apps/css/style.css}"/>
+  </head>
+  <body>
+    <div class="container">
+    	<div class="form-style">
+    		<h1>Regist Your Account</h1>
+	      <form th:action="@{/account}" method="post">
+	      	<ul>
+	      		<li>
+	      			<label>E-Mail :</label>
+	      			<input class="form-control input-lg" type="text" name="userId" value="kono_r@worksap.co.jp" placeholder="Input your e-mail address"/>
+	      		</li>
+	      	</ul>
+	      	<ul>
+	      		<li>
+	      			<label>First Name :</label>
+	      			<input class="form-control input-lg" type="text" name="firstName" value="Ryosuke" placeholder="Input your First Name"/>
+	      		</li>
+	      	</ul>
+	      	<ul>
+	      		<li>
+	      			<label>Last Name :</label>
+	      			<input class="form-control input-lg" type="text" name="lastName" value="Kono" placeholder="Input your Last Name"/>
+	      		</li>
+	      	</ul>
+	      	<ul>
+	      		<li>
+	      			<label>VP Address :</label>
+	      			<input class="form-control input-lg" type="text" name="vpId" value="kono_r@worksap.co.jp" placeholder="Input your VP's address"/>
+	      		</li>
+	      	</ul>
+	      	<ul>
+	      		<li>
+	      			<label>Language :</label>
+	            <select class="form-control" id="langCd" name="langCd">
+	            	<option value="">---</option>
+	            	<option value="ja" th:text="#{lang.ja}">Japanese</option>
+	            	<option value="en" th:text="#{lang.en}">English</option>
+	            </select>
+	      		</li>
+	      	</ul>
+	      	<ul>
+	      		<li><input type="submit" class="btn btn-lg btn-success btn-block" th:value="#{regist.btn}"/></li>
+	      	</ul>
+	      </form>
+      </div>
+    </div>
+
+		<script type="text/javascript" src="/apps/js/jquery-2.2.3.js" th:src="@{/apps/js/jquery-2.2.3.js}"></script>
+		<script type="text/javascript" src="/apps/js/bootstrap-3.3.6..js" th:src="@{/apps/js/bootstrap-3.3.6.js}"></script>
+		<script type="text/javascript" src="/apps/js/angular-1.5.6.js" th:src="@{/apps/js/angular-1.5.6.js}"></script>
+		<script type="text/javascript" src="/apps/js/angular-resource-1.5.6.js" th:src="@{/apps/js/angular-resource-1.5.6.js}"></script>
+		<script type="text/javascript" src="/apps/js/ui-bootstrap-tpls-1.3.3.js" th:src="@{/apps/js/ui-bootstrap-tpls-1.3.3.js}"></script>
+  </body>
+</html>

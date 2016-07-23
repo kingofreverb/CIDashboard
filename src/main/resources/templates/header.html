@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+			xmlns:th="http://www.thymeleaf.org" 
+			xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <title th:text="${@environment.getProperty('spring.application.name')}">title</title>
+		<link rel="stylesheet" href="/apps/css/bootstrap.css" th:href="@{/apps/css/bootstrap.css}"/>
+		<link rel="stylesheet" href="/apps/css/bootstrap-theme.css" th:href="@{/apps/css/bootstrap-theme.css}"/>
+		<link rel="stylesheet" href="/apps/css/ui-grid-3.1.1.css" th:href="@{/apps/css/ui-grid-3.1.1.css}"/>
+		<link rel="stylesheet" href="/apps/css/style.css" th:href="@{/apps/css/style.css}"/>
+  </head>
+  <body>
+    <div class="header" style="z-index: 2;" th:fragment="header">
+			<div class="navbar-header">
+				<h2 class="title">Hue CI Dashboard</h2>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav" th:if="${user.isCI()}">
+					<li class="active"><a href="/home"><span class="nav-menu" th:text="#{link.home}">Home</span></a></li>
+					<li><a href="/progress"><span class="nav-menu" th:text="#{link.progress}">In Progress</span></a></li>
+					<li><a href="/complete"><span class="nav-menu" th:text="#{link.complete}">Completed</span></a></li>
+					<!-- <li><a href="/analytics"><span class="nav-menu" th:text="#{link.analytics}">Analytics</span></a></li>-->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="nav-menu" th:text="#{link.config}">Configuration</span><span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/settings/account">CI Account</a></li>
+							<li><a href="/settings/vp">VP</a></li>
+							<li><a href="/settings/version">Version</a></li>
+							<li><a href="/settings/project">Project</a></li>
+							<li><a href="/settings/dependency">Dependency</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav" th:if="${not user.isCI()}">
+					<li class="active"><a href="/home"><span class="nav-menu" th:text="#{link.home}">Home</span></a></li>
+					<li><a href="/project"><span class="nav-menu" th:text="#{link.project}">Project Apply</span></a></li>
+					<li><a href="/msa"><span class="nav-menu" th:text="#{link.msa}">MSA Apply</span></a></li>
+					<li><a href="/ci"><span class="nav-menu" th:text="#{link.ci}">Request to CI</span></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right account-area">
+					<li>
+						<span class="nav-menu" th:text="${user.getFirstNm()} + ' ' + ${user.getLastNm()}"></span>
+					</li>
+					<li><a href="/logout"><span class="nav-menu" th:text="#{link.logout}">Logout</span></a></li>
+				</ul>
+			</div>
+    </div>
+  </body>
+</html>
