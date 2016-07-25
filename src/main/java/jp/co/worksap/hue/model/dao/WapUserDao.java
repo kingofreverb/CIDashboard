@@ -26,12 +26,13 @@ public class WapUserDao {
 	@Transactional
 	public WapUser getUser(String userId) {
 		WapUser user = jdbcTemplate.queryForObject(
-				"SELECT USER_ID, FIRST_NAME, LAST_NAME, CI_FLG, VP_ID, LANG_CD FROM USRTBL WHERE USER_ID = ?",
+				"SELECT ID, USER_ID, FIRST_NAME, LAST_NAME, CI_FLG, VP_ID, LANG_CD FROM USRTBL WHERE USER_ID = ?",
 				new Object[] {userId},
 				new RowMapper<WapUser>() {
 					@Override
 					public WapUser mapRow(ResultSet rs, int rowNum) throws SQLException {
 						WapUser user = new WapUser();
+						user.setId(rs.getLong("ID"));
 						user.setUserId(rs.getString("USER_ID"));
 						user.setFirstNm(rs.getString("FIRST_NAME"));
 						user.setLastNm(rs.getString("LAST_NAME"));

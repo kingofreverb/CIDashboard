@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <title th:text="${@environment.getProperty('spring.application.name')}">title</title>
+		<link rel="stylesheet" href="/apps/css/bootstrap.css" th:href="@{/apps/css/bootstrap.css}"/>
+		<link rel="stylesheet" href="/apps/css/bootstrap-theme.css" th:href="@{/apps/css/bootstrap-theme.css}"/>
+		<link rel="stylesheet" href="/apps/css/style.css" th:href="@{/apps/css/style.css}"/>
+  </head>
+  <body>
+  	<div th:fragment="apply-input">
+   		<div class="form-group">
+   			<label for="inputName" class="col-sm-2 control-label" th:text="#{apply.user}">Applier：</label>
+   			<div class="col-sm-4">
+           <input type="text" class="form-control" id="appUserNm" name="appUserNm" th:value="${user.getLastNm()} + ' ' + ${user.getFirstNm()}"/>
+           <input type="hidden" class="form-control" id="appUserId" name="appUserId" th:value="${user.getUserId()}"/>
+        </div>
+   		</div>
+   		<div class="form-group">
+   			<label for="inputName" class="col-sm-2 control-label" th:text="#{apply.title}">Apply Title：</label>
+   			<div class="col-sm-8">
+           <input type="text" class="form-control" id="appTitle" name="appTitle" placeholder="Input Apply Content Title"/>
+        </div>
+   		</div>
+   		<div class="form-group">
+   			<label for="inputName" class="col-sm-2 control-label" th:text="#{apply.type}">Apply Type：</label>
+   			<div class="col-sm-2">
+           <select class="form-control" id="appTypeCode" name="appTypeCode">
+           	<option value="">---</option>
+           	<option th:each="item : ${appTypeItems}" th:value="${item.getValue()}" th:text="${item.getLabel()}" th:selected="${item.getValue()} == *{appTypeCode}">pulldown</option>
+           </select>
+        </div>
+   		</div>
+   		<div class="form-group">
+   			<label for="versionLabel" class="col-sm-2 control-label" th:text="#{apply.version}">Ship Version：</label>
+   			<div class="col-sm-2">
+           <select class="form-control" id="version" name="version">
+           	<option value="">---</option>
+           	<option th:each="item : ${versionItems}" th:value="${item.getVersionNo()}" th:text="${item.getVersionNo()}" th:selected="${item.getVersionNo()} == *{version}">pulldown</option>
+           </select>
+        </div>
+   		</div>
+   		<div class="form-group">
+         <label for="appMemoLabel" class="col-sm-2 control-label" th:text="#{apply.detail}">Apply Detail：</label>
+   			<div class="col-sm-8">
+         	<textarea rows="3" cols="80" class="form-control" id="appMemo" name="appMemo"></textarea>
+     		</div>
+     	</div>
+  	</div>
+  </body>
+</html>

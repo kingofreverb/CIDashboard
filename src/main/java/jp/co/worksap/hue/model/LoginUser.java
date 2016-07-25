@@ -10,6 +10,7 @@ import jp.co.worksap.hue.model.entity.WapUser;
 public class LoginUser extends User {
 	private static final long serialVersionUID = 1L;
 	
+	private long id;
 	private String userId;
 	private String firstNm;
 	private String lastNm;
@@ -19,12 +20,21 @@ public class LoginUser extends User {
 	
 	public LoginUser(WapUser user) {
 		super(user.getUserId(), "", true, true, true, true, new ArrayList<GrantedAuthority>());
+		this.id = user.getId();
 		this.userId = user.getUserId();
 		this.firstNm = user.getFirstNm();
 		this.lastNm = user.getLastNm();
 		this.isCI = user.isCI();
 		this.vpUserId = user.getVpUserId();
 		this.langCd = user.getLangCd();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getUserId() {

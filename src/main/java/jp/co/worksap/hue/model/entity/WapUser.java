@@ -4,12 +4,21 @@ import groovy.transform.ToString;
 
 @ToString
 public class WapUser {
+	private long id;
 	private String userId;
 	private String firstNm;
 	private String lastNm;
 	private boolean isCI;
 	private String vpUserId;
 	private String langCd;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getUserId() {
 		return userId;
