@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: jp.co.worksap.hue.CiDashboardApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.097 sec - in jp.co.worksap.hue.CiDashboardApplicationTests

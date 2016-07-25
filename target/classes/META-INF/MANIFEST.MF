@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: CIDashboard
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: AA561191
-Implementation-Vendor-Id: jp.co.worksap.hue
-Build-Jdk: 1.8.0_65
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
