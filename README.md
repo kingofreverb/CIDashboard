@@ -1,7 +1,6 @@
 # CIDashboard
 
 ## *Technology*
-
   * Spring
     * Spring-Boot
     * Spring-Security
@@ -9,9 +8,14 @@
   * Thymeleaf
   * MySQL(Ver5.7)
 
+## *Task*
+  * CI要望機能の実装
+  * マスタ設定画面の整備
+  * デザイン、ユーザビリティ調整
+
 ## *Comment*
   * __免責事項__
-    * ソースが汚いこと
+    * __ソースが汚いこと__
   * 2016/07/22
     * テクノロジー追記
   * 2016/07/23
