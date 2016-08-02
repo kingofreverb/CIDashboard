@@ -52,21 +52,22 @@ function($q, $resource) {
   function doPost(url, params, isArray, isCache) {
     var deferred = $q.defer();
     var resource = getResource(url, params, isArray, isCache);
-    resource.get(
+    resource.post(params,
       function(result, response) {
         deferred.resolve(result);
-      },
-      function(msg, error) {
-        deferred.reject(msg);
       }
+//    	,
+//      function(msg, error) {
+//        deferred.reject(msg);
+//      }
     );
     return deferred.promise;
   }
 
   function getResource(url, params, isArray, isCache) {
     var resource = $resource(url, {}, {
-		get: {method: 'GET', params: {'params': JSON.stringify(params)}, isArray: isArray? isArray : false, cache: isCache? isCache : true},
-		post: {method: 'POST', params: {'params': JSON.stringify(params)}}
+			get: {method: 'GET', params: {'params': JSON.stringify(params)}, isArray: isArray? isArray : false, cache: isCache? isCache : false},
+			post: {method: 'POST', params: {'params': JSON.stringify(params)}}
     });
     return resource;
   }

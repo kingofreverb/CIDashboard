@@ -55,11 +55,23 @@ public class PrjReqDataDao {
 		);
 	}
 	
+	@Transactional
+	public void delete(long appId) {
+		jdbcTemplate.update(getDeleteSQL(), new Object[] {appId});
+	}
+	
 	private String getUpdateSQL() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE APP_REQUEST_PROJECT SET PROJECT_NAME = ?, GIT = ?, MASTER_MAIL_ADDRESS = ?, ");
 		sql.append("PURPOSE = ?, PROJECT_TYPE_CODE = ?, DEPENDENCY_CODE = ? ");
 		sql.append("WHERE APP_ID = ?");
 		return sql.toString();
+	}
+	
+	private String getDeleteSQL() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM APP_REQUEST_PROJECT WHERE APP_ID = ?");
+		return sql.toString();
+		
 	}
 }

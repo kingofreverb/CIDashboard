@@ -24,10 +24,14 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
         {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Command', field: 'cmd', width: 100, enableFiltering: false, 
-        	cellTemplate: '<div ng-if="row.entity.appStsCode == \'STS001\'"><a href="/apply/remove/{{row.entity.appId}}"><button type="button" class="btn btn-sm btn-info">Delete</button></a></div>'
+//        	cellTemplate: '<div ng-if="row.entity.appStsCode == \'STS001\'"><a href="/apply/remove/{{row.entity.appId}}"><button type="button" class="btn btn-sm btn-info" ng-click="remove({{row.entity.appId}})">Delete</button></a></div>'
+        	cellTemplate: '<div ng-if="row.entity.appStsCode == \'STS001\'"><button type="button" class="btn btn-sm btn-info" ng-click="grid.appScope.remove(row.entity.appId)">Delete</button></div>'
         }
       ],
-      data: []
+      data: [],
+      onRegisterApi: function(gridApi) {
+        $scope.gridApi = gridApi;
+      }
   	};
 		// CI用申請一覧(未対応分)
   	$scope.gridAppliedOpt = {
@@ -51,7 +55,10 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
         {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'updTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
       ],
-      data: []
+      data: [],
+      onRegisterApi: function(gridApi) {
+        $scope.gridApi = gridApi;
+      }
   	};
 		// CI用対応済一覧
   	$scope.gridApplyDoneOpt = {
@@ -75,7 +82,10 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
         {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'updTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150}
       ],
-      data: []
+      data: [],
+      onRegisterApi: function(gridApi) {
+        $scope.gridApi = gridApi;
+      }
   	};
 		
 		$scope.getAppTypeMst = function() {
@@ -140,10 +150,18 @@ ykzCtrl.controller('DevCtrl', ['$scope', '$controller', 'YkzApi', 'uiGridConstan
 			YkzApi.doGet('/myappdata', {}, true, false).then(
 				function(result) {
 					$scope.gridMyAppliedOpt.data = result;
+					$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ALL);
 				},
 				function(errMsg) {}
 			);
 		}
+		$scope.remove = function(appId) {
+			YkzApi.doPost('/apply/remove', {"appId": appId}).then(
+				function(result) {
+					$scope.getAppData();
+				}
+			);
+		};
 
     $scope.init = function() {
 	  	$scope.getMstData();

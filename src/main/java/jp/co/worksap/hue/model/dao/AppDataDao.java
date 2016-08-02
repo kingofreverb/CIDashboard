@@ -83,6 +83,15 @@ public class AppDataDao {
 		);
 	}
 	
+	@Transactional
+	public void delete(long appId) {
+		jdbcTemplate.update(
+			getDeleteSQL(),
+			new Object[] {appId}
+		);
+		
+	}
+	
 	private String getByIdSQL() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT A.APP_ID, A.APP_TITLE, A.APP_TYPE_CODE, A.APP_USER_ID, A.APP_USER_NM, A.APP_STS_CODE, ");
@@ -120,6 +129,12 @@ public class AppDataDao {
 		sql.append("UPDATE APP_TABLE SET APP_TITLE = ?, APP_TYPE_CODE = ?, APP_USER_ID = ?, APP_USER_NM = ?, ");
 		sql.append("APP_STS_CODE = ?, VERSION_NO = ?, APP_CHARGE_USER_ID = ?, APP_CHARGE_USER_NM = ?, UPD_TIME = ?, ");
 		sql.append("APP_MEMO = ? WHERE APP_ID = ?");
+		return sql.toString();
+	}
+	
+	private String getDeleteSQL() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM APP_TABLE WHERE APP_ID = ?");
 		return sql.toString();
 	}
 }

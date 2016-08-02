@@ -1,14 +1,19 @@
 package jp.co.worksap.hue.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jp.co.worksap.hue.model.AppDetailDto;
 import jp.co.worksap.hue.model.LoginUser;
 import jp.co.worksap.hue.model.entity.AppData;
 import jp.co.worksap.hue.model.entity.AppSts;
@@ -72,5 +77,14 @@ public class RestApiController {
 	@ResponseBody
 	public List<AppSts> getAppSts(@AuthenticationPrincipal LoginUser user) {
 		return configService.getAppSts();
+	}
+	
+	@RequestMapping(value="/apply/remove", method=RequestMethod.POST, consumes = "application/json")
+	@ResponseBody
+	public ResponseEntity<HttpStatus> remove(@AuthenticationPrincipal LoginUser user, @RequestBody Map<String, Object> params) {
+		long appId = Long.parseLong(params.get("appId").toString());
+		AppDetailDto dto = applyService.getApplyDtlData(appId);
+		applyService.deleteApplyData(appId, dto.getAppData().getAppTypeCode());
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 }

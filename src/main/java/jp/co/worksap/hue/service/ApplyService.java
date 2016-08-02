@@ -23,7 +23,7 @@ public class ApplyService {
 	@Autowired
 	private PrjReqDataDao prjReqDataDao;
 	@Autowired
-	private MsaReqDataDao masReqDataDao;
+	private MsaReqDataDao msaReqDataDao;
 	
 	public List<AppData> getApplyingData() {
 		return appDataDao.getAppliedData();
@@ -46,7 +46,7 @@ public class ApplyService {
 				dto.setPrjReqData(prjReqDataDao.getById(appId));
 				break;
 			case APP_MSA:
-				dto.setMsaReqData(masReqDataDao.getById(appId));
+				dto.setMsaReqData(msaReqDataDao.getById(appId));
 				break;
 		}
 		return dto;
@@ -64,7 +64,7 @@ public class ApplyService {
 	public long registMsaData(MsaFormDto dto) {
 		long appId = appDataDao.regist(dto.getAppData());
 		dto.setAppId(appId);
-		masReqDataDao.regist(dto.getMsaReqData());
+		msaReqDataDao.regist(dto.getMsaReqData());
 		return appId;
 	}
 	
@@ -76,8 +76,21 @@ public class ApplyService {
 				prjReqDataDao.update(appId, dto.getPrjReqData());
 				break;
 			case APP_MSA:
-				masReqDataDao.update(appId, dto.getMsaReqData());
+				msaReqDataDao.update(appId, dto.getMsaReqData());
 				break;
 		}
+	}
+	
+	@Transactional
+	public void deleteApplyData(long appId, String appTypeCode) {
+		switch (AppTypeMst.getAppType(appTypeCode)) {
+			case APP_PRJ:
+				prjReqDataDao.delete(appId);
+				break;
+			case APP_MSA:
+				msaReqDataDao.delete(appId);
+				break;
+		}
+		appDataDao.delete(appId);
 	}
 }

@@ -53,10 +53,22 @@ public class MsaReqDataDao {
 		);
 	}
 	
+	@Transactional
+	public void delete(long appId) {
+		jdbcTemplate.update(getDeleteSQL(), new Object[] {appId});
+	}
+	
 	private String getUpdateSQL() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE APP_REQUEST_MSA SET REPOSITORY_NAME = ?, CI_CHARGE_PERSON = ?, GIT = ?, ");
 		sql.append("TEST_START_DATE = ? WHERE APP_ID = ?");
 		return sql.toString();
+	}
+	
+	private String getDeleteSQL() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM APP_REQUEST_MSA WHERE APP_ID = ?");
+		return sql.toString();
+		
 	}
 }
