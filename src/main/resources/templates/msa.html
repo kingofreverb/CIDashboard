@@ -13,7 +13,7 @@
     
     <!-- MSA申請情報 -->
     <div class="content container-fluid" style="z-index:1">
-    	<form class="form-horizontal" th:action="@{/msa}" method="post">
+    	<form class="form-horizontal" th:action="@{/msa}" method="post" name="msaForm">
     		<!-- 申請情報 -->
   			<div th:replace="apply-input::apply-input"></div>
       	<!-- MSA情報 -->
@@ -22,7 +22,7 @@
       	<div class="form-group">
       		<label for="applyBtn" class="col-sm-2 control-label"></label>
     			<div class="col-sm-6 link-right">
-      			<input type="submit" class="btn btn-lg btn-primary btn-block" value="Apply"/>
+      			<input type="submit" class="btn btn-lg btn-primary btn-block" value="#{apply.btn}" ng-disabled="msaForm.$invalid"/>
       		</div>
       	</div>
     	</form>

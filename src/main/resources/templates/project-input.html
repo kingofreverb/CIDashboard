@@ -10,14 +10,14 @@
   	<div th:fragment="project-input">
    		<div class="form-group">
    			<label for="projectName" class="col-sm-2 control-label" th:text="#{project.name}">Project Name：</label>
-   			<div class="col-sm-8">
-           <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Input Project Name"/>
+   			<div class="col-sm-8" ng-class="{'has-error': prjForm.projectName.$invalid && prjForm.projectName.$dirty}">
+           <input type="text" class="form-control" id="projectName" name="projectName" ng-required="true" ng-maxlength="50" placeholder="Input Project Name" ng-model="projectName"/>
         </div>
    		</div>
    		<div class="form-group">
    			<label for="projectTypeLabel" class="col-sm-2 control-label" th:text="#{project.type}">Project Type：</label>
-   			<div class="col-sm-2">
-           <select class="form-control" id="projectTypeCode" name="projectTypeCode">
+   			<div class="col-sm-2" ng-class="{'has-error': prjForm.version.$invalid && prjForm.version.$dirty}">
+           <select class="form-control" id="projectTypeCode" name="projectTypeCode" ng-required="true" ng-model="projectTypeCode">
            	<option value="">---</option>
            	<option th:each="item : ${projectTypeItems}" th:value="${item.getProjectTypeCode()}" th:text="${item.getProjectTypeName()}" th:selected="${item.getProjectTypeCode()} == *{projectTypeCode}">pulldown</option>
            </select>
@@ -25,8 +25,8 @@
    		</div>
    		<div class="form-group">
    			<label for="versionLabel" class="col-sm-2 control-label" th:text="#{git.type}">Git Type:</label>
-   			<div class="col-sm-2">
-           <select class="form-control" id="git" name="git">
+   			<div class="col-sm-2" ng-class="{'has-error': prjForm.git.$invalid && prjForm.git.$dirty}">
+           <select class="form-control" id="git" name="git" ng-required="true" ng-model="git">
            	<option value="">---</option>
            	<option value="BT">BT</option>
            	<option value="Product">Product</option>
@@ -35,14 +35,14 @@
    		</div>
    		<div class="form-group">
    			<label for="inputName" class="col-sm-2 control-label" th:text="#{project.manager}">Management Address：</label>
-   			<div class="col-sm-6">
-           <input type="text" class="form-control" id="masterMailAddress" name="masterMailAddress" placeholder="Input Management Mail Address"/>
+   			<div class="col-sm-6" ng-class="{'has-error': prjForm.masterMailAddress.$invalid && prjForm.masterMailAddress.$dirty}">
+           <input type="text" class="form-control" id="masterMailAddress" name="masterMailAddress" ng-required="true" ng-model="masterMailAddress" placeholder="Input Management Mail Address"/>
         </div>
    		</div>
    		<div class="form-group">
    			<label for="dependencyLabel" class="col-sm-2 control-label" th:text="#{project.dependency}">Dependency Type：</label>
-   			<div class="col-sm-2">
-           <select class="form-control" id="dependencyCode" name="dependencyCode">
+   			<div class="col-sm-2" ng-class="{'has-error': prjForm.dependencyCode.$invalid && prjForm.dependencyCode.$dirty}">
+           <select class="form-control" id="dependencyCode" name="dependencyCode" ng-required="true" ng-model="dependencyCode">
            	<option value="">---</option>
            	<option th:each="item : ${dependencyItems}" th:value="${item.getDependencyCode()}" th:text="${item.getDependencyName()}" th:selected="${item.getDependencyCode()} == *{dependencyCode}">pulldown</option>
            </select>

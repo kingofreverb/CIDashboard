@@ -28,6 +28,7 @@ public class DevelopController {
 	public ModelAndView getPrj(@AuthenticationPrincipal LoginUser user) {
 		ModelAndView model = new ModelAndView("project");
 		model.addObject("user", user);
+		model.addObject("appTypeCd", "app_prj");
 		model.addObject("appTypeItems", configService.getAppType());
 		model.addObject("versionItems", configService.getVersionNo());
 		model.addObject("projectTypeItems", configService.getProjectType());
@@ -48,6 +49,7 @@ public class DevelopController {
 	public ModelAndView getMsa(@AuthenticationPrincipal LoginUser user) {
 		ModelAndView model = new ModelAndView("msa");
 		model.addObject("user", user);
+		model.addObject("appTypeCd", "app_msa");
 		model.addObject("appTypeItems", configService.getAppType());
 		model.addObject("versionItems", configService.getVersionNo());
 		return model;

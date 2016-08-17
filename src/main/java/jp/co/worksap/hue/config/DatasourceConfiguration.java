@@ -15,6 +15,8 @@ public class DatasourceConfiguration {
 	private String driverClassName;
 	@Value("${spring.datasource.url}")
 	private String url;
+//	@Value("${spring.datasource.name}")
+//	private String dbName;
 	@Value("${spring.datasource.userId}")
 	private String userId;
 	@Value("${spring.datasource.password}")
