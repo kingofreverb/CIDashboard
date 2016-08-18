@@ -8,6 +8,12 @@
   </head>
   <body>
   	<div th:fragment="project-input">
+ 			<div class="form-group">
+   			<label for="prjInfo" class="col-sm-2 control-label"></label>
+ 				<div class="col-sm-8 link-right">
+ 					<h4><span class="col-sm-12 label label-primary" th:text="#{prj.form.title}">Project Information</span></h4>
+ 				</div>
+ 			</div>
    		<div class="form-group">
    			<label for="projectName" class="col-sm-2 control-label" th:text="#{project.name}">Project Name：</label>
    			<div class="col-sm-8" ng-class="{'has-error': prjForm.projectName.$invalid && prjForm.projectName.$dirty}">

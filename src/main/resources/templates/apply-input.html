@@ -8,6 +8,12 @@
   </head>
   <body>
   	<div th:fragment="apply-input">
+ 			<div class="form-group">
+   			<label for="applyInfo" class="col-sm-2 control-label"></label>
+ 				<div class="col-sm-8 link-right">
+ 					<h4><span class="col-sm-12 label label-info" th:text="#{apply.form.title}">Apply Information</span></h4>
+ 				</div>
+ 			</div>
    		<div class="form-group">
    			<label for="inputName" class="col-sm-2 control-label" th:text="#{apply.user}">Applier：</label>
    			<div class="col-sm-4">

@@ -18,7 +18,10 @@
     		<!-- 申請情報 -->
     		<div>
     			<div class="form-group">
-    				<h4><span class="col-sm-12 label label-info" th:text="#{apply.form.title}">Apply Information</span></h4>
+      			<label for="applyInfo" class="col-sm-2 control-label"></label>
+    				<div class="col-sm-8 link-right">
+    					<h4><span class="col-sm-12 label label-info" th:text="#{apply.form.title}">Apply Information</span></h4>
+    				</div>
     			</div>
 	    		<div class="form-group">
 	    			<label for="inputName" class="col-sm-2 control-label" th:text="#{apply.sts}">Apply Status：</label>
@@ -70,7 +73,10 @@
       	<!-- プロジェクト申請情報 -->
       	<div  th:if="${appData.getAppTypeCode() == 'app_prj'}">
     			<div class="form-group">
-    				<h4><span class="col-sm-12 label label-primary" th:text="#{prj.form.title}">Project Information</span></h4>
+      			<label for="prjInfo" class="col-sm-2 control-label"></label>
+    				<div class="col-sm-8 link-right">
+    					<h4><span class="col-sm-12 label label-primary" th:text="#{prj.form.title}">Project Information</span></h4>
+    				</div>
     			</div>
 	    		<div class="form-group">
 	    			<label for="projectName" class="col-sm-2 control-label" th:text="#{project.name}">Project Name：</label>
@@ -122,7 +128,10 @@
       	<!-- MSA情報 -->
       	<div th:if="${appData.getAppTypeCode() == 'app_msa'}">
     			<div class="form-group">
-    				<h4><span class="col-sm-12 label label-primary" th:text="#{msa.form.title}">MSA Information</span></h4>
+      			<label for="prjInfo" class="col-sm-2 control-label"></label>
+    				<div class="col-sm-8 link-right">
+    					<h4><span class="col-sm-12 label label-primary" th:text="#{msa.form.title}">MSA Information</span></h4>
+    				</div>
     			</div>
 	    		<div class="form-group">
 	    			<label for="repositoryNameLabel" class="col-sm-2 control-label" th:text="#{msa.repos}">Repository Name：</label>
@@ -158,7 +167,7 @@
 	    	</div>
       	<div class="form-group" th:if="${appData.getAppStsCode() == 'STS001' || user.isCI()}">
       		<label for="applyBtn" class="col-sm-2 control-label"></label>
-    			<div class="col-sm-6 link-right">
+    			<div class="col-sm-8 link-right">
       			<input type="submit" class="btn btn-lg btn-success btn-block" th:value="#{update.btn}"/>
       		</div>
       	</div>
