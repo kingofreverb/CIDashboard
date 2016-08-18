@@ -1,5 +1,9 @@
 # CIDashboard
 
+## *Command*
+  * Jar実行
+    * java -jar ci-dashboard.jar --spring.datasource.url=[接続URL] --spring.datasource.userId=[接続ユーザー] --spring.datasource.password=[接続パスワード]
+
 ## *Technology*
   * Spring
     * Spring-Boot
@@ -24,6 +28,8 @@
     * とりあえず動く版コミット
   * 2016/08/02
     * 未処理の申請データを申請者が削除可能に
+  * 2016/08/17
+    * 申請入力時のバリデーション対応
 
 CIDashboard
 
