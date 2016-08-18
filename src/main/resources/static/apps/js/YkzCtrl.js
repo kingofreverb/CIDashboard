@@ -38,7 +38,7 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
   		enableFiltering: true,
   	  columnDefs: [
         {name: 'ID', field: 'appId', width: 35, enableFiltering: false, 
-        	cellTemplate: '<div><a href="/apply/{{COL_FIELD}}">{{COL_FIELD}}</a></div>'
+        	cellTemplate: '<div><a class="link-center" href="/apply/{{COL_FIELD}}"><span class="link-center">{{COL_FIELD}}</span></a></div>'
         },
         {name: 'Title', field: 'appTitle', width: 300},
         {name: 'Type', field: 'appTypeName', width: 120, filter: {
@@ -65,7 +65,7 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
   		enableFiltering: true,
   	  columnDefs: [
         {name: 'ID', field: 'appId', width: 35, enableFiltering: false, 
-        	cellTemplate: '<div><a href="/apply/{{COL_FIELD}}">{{COL_FIELD}}</a></div>'
+        	cellTemplate: '<div><a class="link-center" href="/apply/{{COL_FIELD}}"><span class="link-center">{{COL_FIELD}}</span></a></div>'
         },
         {name: 'Title', field: 'appTitle', width: 300},
         {name: 'Type', field: 'appTypeName', width: 120, filter: {
