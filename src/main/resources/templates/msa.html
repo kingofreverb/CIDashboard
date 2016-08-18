@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+			xmlns:th="http://www.thymeleaf.org" 
+			xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+			ng-app="ykzApp">
   <head>
     <title th:text="${@environment.getProperty('spring.application.name')}">title</title>
 		<link rel="stylesheet" href="/apps/css/bootstrap.css" th:href="@{/apps/css/bootstrap.css}"/>
@@ -13,7 +16,7 @@
     
     <!-- MSA申請情報 -->
     <div class="content container-fluid" style="z-index:1">
-    	<form class="form-horizontal" th:action="@{/msa}" method="post" name="msaForm">
+    	<form class="form-horizontal" th:action="@{/msa}" method="post" name="msaForm" novalidate="true">
     		<!-- 申請情報 -->
   			<div th:replace="apply-input::apply-input"></div>
       	<!-- MSA情報 -->
