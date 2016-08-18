@@ -9,6 +9,7 @@ public class AppData {
 	private long appId;
 	private String appTitle;
 	private String appTypeCode;
+	private String appTypeName;
 	private String appUserId;
 	private String appUserNm;
 	private String appStsCode;
@@ -37,6 +38,12 @@ public class AppData {
 	}
 	public void setAppTypeCode(String appTypeCode) {
 		this.appTypeCode = appTypeCode;
+	}
+	public String getAppTypeName() {
+		return appTypeName;
+	}
+	public void setAppTypeName(String appTypeName) {
+		this.appTypeName = appTypeName;
 	}
 	public String getAppUserId() {
 		return appUserId;

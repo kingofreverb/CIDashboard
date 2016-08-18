@@ -7,15 +7,15 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
   		id: 'myApplyDataGrid',
   		enableFiltering: true,	
   	  columnDefs: [
-        {name: 'ID', field: 'appId', width: 70,
+        {name: 'ID', field: 'appId', width: 35, enableFiltering: false, 
         	cellTemplate: '<div><a class="link-center" href="/apply/{{COL_FIELD}}"><span class="link-center">{{COL_FIELD}}</span></a></div>'
         },
         {name: 'Title', field: 'appTitle', width: 300},
-        {name: 'Type', field: 'appTypeCode', width: 110, filter: {
+        {name: 'Type', field: 'appTypeName', width: 140, filter: {
       	  type: uiGridConstants.filter.SELECT,
       	  selectOptions: []
         }},
-        {name: 'Applier', field: 'appUserNm', width: 200},
+        {name: 'Applier', field: 'appUserNm', width: 180},
         {name: 'Status', field: 'appStsName', width: 110, filter: {
       	  type: uiGridConstants.filter.SELECT,
       	  selectOptions: []
@@ -24,7 +24,6 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
         {name: 'Apply Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Update Date', field: 'appTime', cellFilter: 'date:\'yyyy/MM/dd HH:mm:ss\'', enableFiltering: false, width: 150},
         {name: 'Command', field: 'cmd', width: 100, enableFiltering: false, 
-//        	cellTemplate: '<div ng-if="row.entity.appStsCode == \'STS001\'"><a href="/apply/remove/{{row.entity.appId}}"><button type="button" class="btn btn-sm btn-info" ng-click="remove({{row.entity.appId}})">Delete</button></a></div>'
         	cellTemplate: '<div ng-if="row.entity.appStsCode == \'STS001\'"><button type="button" class="btn btn-sm btn-info" ng-click="grid.appScope.remove(row.entity.appId)">Delete</button></div>'
         }
       ],
@@ -38,11 +37,11 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
   		id: 'appliedDataGrid',
   		enableFiltering: true,
   	  columnDefs: [
-        {name: 'ID', field: 'appId', width: 100,
+        {name: 'ID', field: 'appId', width: 35, enableFiltering: false, 
         	cellTemplate: '<div><a href="/apply/{{COL_FIELD}}">{{COL_FIELD}}</a></div>'
         },
         {name: 'Title', field: 'appTitle', width: 300},
-        {name: 'Type', field: 'appTypeCode', width: 120, filter: {
+        {name: 'Type', field: 'appTypeName', width: 120, filter: {
       	  type: uiGridConstants.filter.SELECT,
       	  selectOptions: []
         }},
@@ -65,11 +64,11 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
   		id: 'appliedDoneGrid',
   		enableFiltering: true,
   	  columnDefs: [
-        {name: 'ID', field: 'appId', width: 100,
+        {name: 'ID', field: 'appId', width: 35, enableFiltering: false, 
         	cellTemplate: '<div><a href="/apply/{{COL_FIELD}}">{{COL_FIELD}}</a></div>'
         },
         {name: 'Title', field: 'appTitle', width: 300},
-        {name: 'Type', field: 'appTypeCode', width: 120, filter: {
+        {name: 'Type', field: 'appTypeName', width: 120, filter: {
       	  type: uiGridConstants.filter.SELECT,
       	  selectOptions: []
         }},
@@ -92,8 +91,12 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
 			YkzApi.doGet('/apptype', {}, true, false).then(
 				function(result) {
 					$scope.appTypeList = result;
-					$scope.gridMyAppliedOpt.columnDefs[2].filter.selectOptions = result;
-					$scope.gridAppliedOpt.columnDefs[2].filter.selectOptions = result;
+					var selectList = [];
+					result.forEach(function(row, idx) {
+						selectList.push({label: row.label, value: row.label});
+					});
+					$scope.gridMyAppliedOpt.columnDefs[2].filter.selectOptions = selectList;
+					$scope.gridAppliedOpt.columnDefs[2].filter.selectOptions = selectList;
 				},
 				function(errMsg) {}
 			);
@@ -102,8 +105,12 @@ ykzCtrl.controller('YkzCtrl', ['$scope', 'YkzApi', 'uiGridConstants',
 			YkzApi.doGet('/appsts', {}, true, false).then(
 				function(result) {
 					$scope.appStsList = result;
-					$scope.gridMyAppliedOpt.columnDefs[4].filter.selectOptions = result;
-					$scope.gridAppliedOpt.columnDefs[4].filter.selectOptions = result;
+					var selectList = [];
+					result.forEach(function(row, idx) {
+						selectList.push({label: row.label, value: row.label});
+					});
+					$scope.gridMyAppliedOpt.columnDefs[4].filter.selectOptions = selectList;
+					$scope.gridAppliedOpt.columnDefs[4].filter.selectOptions = selectList;
 				},
 				function(errMsg) {}
 			);
